@@ -29,8 +29,10 @@ class MysqlSingleton{
         if($this->conexao){
             $sth = $this->conexao->prepare($query);
             foreach($param as $k => $v){
-                $sth->bindParam($k,$v);
+                $sth->bindValue($k,$v);
+               
             }
+            
             $sth->execute();
             return $sth->fetchAll(PDO::FETCH_ASSOC);
         }
